@@ -101,8 +101,10 @@ function checkWin() {
     const title = document.querySelector('#overlay h2');
     if(shownLetters.length === phraseLetters.length) {
         resultPage['win'](title);
+        resetGame();
     } else if(missed >= 5) {
         resultPage['lose'](title);
+        resetGame();
     };
 };
 
@@ -116,7 +118,6 @@ const resultPage = {
         setEL(button, 'textContent', 'Play again');
         text.style.animation = 'fadeIn 1.3s';
         overlay.insertBefore(text, title);
-        resetGame();
     },
     lose: (title) => {
         setEL(text, 'innerHTML', 
@@ -127,7 +128,6 @@ const resultPage = {
         setEL(title, 'className', 'scale');
         text.style.animation = 'fadeIn 2s ease-in-out'
         overlay.insertBefore(text, button);
-        resetGame();
     }
 };
 
