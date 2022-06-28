@@ -4,6 +4,7 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const ul = document.querySelector('#phrase ul');
 let missed = 0;
+let answer;
 const button = document.querySelector('.btn__reset');
 const overlay = document.getElementById('overlay');
 const text = document.createElement('h3');
@@ -55,7 +56,9 @@ function addPhraseToDisplay(arr) {
         } else {
             li.className = 'letter';
         };
+        answer = arr.join('');
     } return arr;
+    
 };
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray); 
@@ -98,10 +101,8 @@ function checkWin() {
     const title = document.querySelector('#overlay h2');
     if(shownLetters.length === phraseLetters.length) {
         resultPage['win'](title);
-        resetGame();
     } else if(missed >= 5) {
         resultPage['lose'](title);
-        resetGame();
     };
 };
 
@@ -115,17 +116,18 @@ const resultPage = {
         setEL(button, 'textContent', 'Play again');
         text.style.animation = 'fadeIn 1.3s';
         overlay.insertBefore(text, title);
+        resetGame();
     },
     lose: (title) => {
-        const answer = phraseArray.join('');
-        showOverlay('lose')
         setEL(text, 'innerHTML', 
-        `The answer was <br><span style="font-size:1.4em">"${answer}"</span>.`);
+            `The answer was <br><span style="font-size:1.4em">"${answer}"</span>.`);
+        showOverlay('lose')
         setEL(title, 'textContent', 'Too bad! ☠️');
         setEL(button, 'textContent', 'Try again');
         setEL(title, 'className', 'scale');
         text.style.animation = 'fadeIn 2s ease-in-out'
         overlay.insertBefore(text, button);
+        resetGame();
     }
 };
 
