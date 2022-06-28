@@ -149,6 +149,11 @@ button {
   border-radius: 5px;
 }
 
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .title {
   color: #FFF;
 }

@@ -20,8 +20,7 @@ const phrases = [
 // Show overlay
 function showOverlay(result) {
     overlay.className = result;
-    overlay.style.display = 'flex';
-    overlay.style.transition = 'background-color .2s';
+    overlay.style.visibility = 'visible';
 };
 // Set element's property and value function
 function setEL(element, property, value) {
@@ -34,7 +33,9 @@ function setEL(element, property, value) {
 
 // Remove overlay - start game
 button.addEventListener('click', () => {
-    overlay.style.display = 'none';
+    overlay.className = 'hidden';
+    overlay.style.visibility = 'hidden';
+    overlay.style.transition= 'all .7s';
 });
 
 // Get random phrase in letters in a array
